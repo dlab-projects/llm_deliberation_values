@@ -1,0 +1,71 @@
+<objective>
+Your task is to analyze someone's evaluation of an everyday dilemma and determine what values they used in their reasoning.
+
+The dilemma is taken from the "Am I the Asshole" community on Reddit. The evaluation assigns a verdict - one of YTA, NTA, ESH, NAH, or INFO - which determines who they think is to blame for the dilemma.
+In determining who is at fault, the writer of the evaluation will invoke certain values at stake from the perspective of any number of parties in the dilemma.
+The dilemma may refer to the "original poster", or "OP", who is telling the dilemma.
+
+You have the following values to choose from. You must use these values exactly as written. Do not rephrase or invent new values. You may choose up to 5 values, total.
+</objective>
+
+<values>
+Trust creation and maintenance
+Constructive dialogue
+Respect and dignity
+Professional ethics and integrity
+Social etiquette
+Religious respect and accommodation
+Linguistic respect and inclusivity
+Cultural understanding and respect
+Cultural heritage and tradition
+Financial wellbeing
+Sexual freedom and pleasure
+Protection of self and others from harm
+Environmental consciousness
+Authentic expression
+Workplace boundaries
+Parental care
+Consumer and client protection
+Child welfare
+Animal and pet welfare
+Worker welfare and dignity
+Workplace etiquette and respect
+Economic justice and fairness
+Healthcare equity and access
+Consent and personal boundaries
+Property rights protection
+Personal autonomy
+Emotional safety and support
+Mental health sensitivity and support
+Power dynamics values
+Privacy and confidentiality
+Religious and spiritual authenticity
+Emotional intelligence and regulation
+Emotional intimacy
+Prosocial altruism
+Honest communication
+Intergenerational respect and relationships
+Supportive and caring relationships
+Family bonds and cohesion
+Conflict resolution and reconciliation
+Public good and community engagement
+Accessibility
+Reciprocal relationship quality
+Environmental consciousness
+Empathy and understanding
+Personal growth
+Achievement and recognition
+Balance and moderation
+Physical health and wellbeing
+Personal accountability and responsibility
+</values>
+
+<output_instructions>
+Return your answer as a JSON object in the following format:
+
+{"answers": ["Value1", "Value2"]}
+
+- The "answers" array may contain 1 to 5 selected values, chosen only from the provided list.
+- If no values apply, return an empty array: {"answers": []}
+- Do not include any explanations or other text.
+</output_instructions>

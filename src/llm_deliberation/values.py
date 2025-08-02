@@ -1,4 +1,7 @@
-from pydantic import BaseModel, Field
+import json
+import os
+from google import genai
+from pydantic import BaseModel
 
 
 class Values(BaseModel):
@@ -29,6 +32,40 @@ def collapse_values(flat_values, messages):
     if i != len(flat_values):
         raise ValueError("Some flat_values left unused; messages structure does not match flat_values length.")
     return output
+
+
+def process_value_batches(batch_id):
+    """
+    Process a Gemini AI batch job to extract values from batch responses.
+
+    Downloads and processes the output file from a completed Gemini batch job,
+    extracting the 'answers' field from each response and converting them to sets.
+
+    Args:
+        batch_id (str): The unique identifier of the Gemini batch job
+    Returns:
+        List[set]: A list of sets, where each set contains the values/answers 
+                   extracted from one batch response
+    Raises:
+        KeyError: If the expected response structure is not found
+        json.JSONDecodeError: If response content is not valid JSON
+    """
+    # Initialize Gemini client with API key from environment
+    client = genai.Client(api_key=os.getenv('GEMINI_API_KEY'))
+    # Retrieve the batch job details
+    batch = client.batches.get(name=batch_id)
+    # Get the output file ID from the batch destination
+    file_id = batch.dest.file_name
+    # Download the batch results file
+    file = client.files.download(file=file_id)
+    # Parse the file content - each line is a separate JSON response
+    lines = file.decode('utf-8').strip().split('\n')
+    outputs = [json.loads(line) for line in lines]
+    # Extract values from each response and convert to sets for deduplication
+    # Navigate the nested response structure: response -> candidates[0] -> content -> parts[0] -> text
+    values = [set(json.loads(output['response']['candidates'][0]['content']['parts'][0]['text'])['answers'])
+              for output in outputs]
+    return values
 
 
 values = [
