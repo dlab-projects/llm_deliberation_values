@@ -139,6 +139,9 @@ def process_deliberation_results(results_list, n_agents, max_rounds, individual_
     data = []
 
     for idx, results in enumerate(results_list):
+        if len(results) == 0:
+            print(idx)
+            continue
         # Process single result using your existing function
         agents, explanations, verdicts, _ = process_round_robin_deliberation(results, n_agents)
 

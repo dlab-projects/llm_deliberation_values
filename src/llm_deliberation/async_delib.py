@@ -24,8 +24,7 @@ async def async_delib(dilemma, clients, model_names, system_prompt_template, max
     for round in range(1, max_rounds + 1):
         coroutines = [client.create(histories[name])
                       for name, client in clients.items()]
-        results = await asyncio.gather(*coroutines)
-
+        results = await asyncio.gather(*coroutines, return_exceptions=True)
         contents = [result.content for result in results]
 
         for name, content in zip(model_names, contents):

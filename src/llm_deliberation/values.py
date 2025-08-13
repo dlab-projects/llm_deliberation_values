@@ -63,9 +63,16 @@ def process_value_batches(batch_id):
     outputs = [json.loads(line) for line in lines]
     # Extract values from each response and convert to sets for deduplication
     # Navigate the nested response structure: response -> candidates[0] -> content -> parts[0] -> text
-    values = [set(json.loads(output['response']['candidates'][0]['content']['parts'][0]['text'])['answers'])
-              for output in outputs]
-    return values
+    values = {}
+    for output in outputs:
+        key = int(output['key'].replace('request', ''))
+        try:
+            values[key] = (set(json.loads(output['response']['candidates'][0]['content']['parts'][0]['text'])['answers']))
+        except:
+            print(f"Error processing output: {output}")
+            values[key] = set()
+
+    return [values[key] for key in range(len(values))]
 
 
 values = [
