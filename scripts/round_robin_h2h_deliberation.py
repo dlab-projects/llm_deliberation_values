@@ -21,7 +21,7 @@ MAX_TURNS = N_AGENTS * MAX_ROUNDS
 TEMPERATURE = 1
 DILEMMAS_PATH = here("data/processed/scenarios_verdicts.csv")
 PROMPT_PATH = here("prompts/round_robin_h2h.txt")
-TRACKING_PATH = here("data/tracking/exp2_round_robin_h2h.pkl")
+TRACKING_PATH = here("data/tracking/exp5_round_robin_h2h.pkl")
 
 # ── Data ────────────────────────────────────────────────────────────────────
 df = pd.read_csv(DILEMMAS_PATH)
@@ -29,18 +29,22 @@ template = Template.from_file(PROMPT_PATH)
 dilemmas = df['selftext_cleaned'].iloc[:1000]
 
 # ── Clients ───────────────────────────────────────────────────────────────────
-# agent1 = AnthropicChatCompletionClient(
-#     model="claude-3-7-sonnet-20250219",
+# agent1 = OpenAIChatCompletionClient(
+#     model="gemini-2.0-flash",
 #     temperature=TEMPERATURE,
-#     api_key=os.getenv("ANTHROPIC_API_KEY"))
+#     api_key=os.getenv("GEMINI_API_KEY"))
 agent1 = OpenAIChatCompletionClient(
     model="gpt-4.1-2025-04-14",
     temperature=TEMPERATURE,
     api_key=os.getenv("OPENAI_API_KEY"))
-agent2 = OpenAIChatCompletionClient(
-    model="gemini-2.0-flash",
+agent2 = AnthropicChatCompletionClient(
+    model="claude-3-7-sonnet-20250219",
     temperature=TEMPERATURE,
-    api_key=os.getenv("GEMINI_API_KEY"))
+    api_key=os.getenv("ANTHROPIC_API_KEY"))
+# agent1 = OpenAIChatCompletionClient(
+#     model="gpt-4.1-2025-04-14",
+#     temperature=TEMPERATURE,
+#     api_key=os.getenv("OPENAI_API_KEY"))
 
 clients = {'Agent1': agent1, 'Agent2': agent2}
 model_names = ['Agent 1', 'Agent 2']
