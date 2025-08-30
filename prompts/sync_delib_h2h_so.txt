@@ -37,7 +37,7 @@ Your explanation must satisfy the following constraints:
 </explanation_criteria>
 
 <deliberation_format>
-- Each round will be conducted asynchronously. You and the other agent will simultaneously choose your verdict and write an explanation.
+- Each round will be conducted synchronously. You and the other agent will simultaneously choose your verdict and write an explanation.
 - If you and the other agent agree on the verdict, the deliberation will conclude.
 - If you both do not agree, you will be able to view the other agent's verdict and reasoning. You will then have the opportunity to respond to the other argument and update your decision.
 - There will be a maximum of 4 rounds.
