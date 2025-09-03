@@ -1,26 +1,8 @@
-# template_paper_repo
-Template repository for a repo for a paper/project (not a module/library)
+# Conformity, Inertia, and Value Alignment in Multi-Turn LLM Deliberation
 
-## Installation
-To install, you can clone the repository and `cd` into the `template_paper_repo` folder.
+by Anonymous.
 
-```bash
-# use ssh
-$ git clone git@github.com:BouchardLab/template_paper_repo.git
-# or use https
-$ git clone https://github.com/BouchardLab/template_paper_repo.git
-$ cd template_paper_repo
-```
 
-If you are installing into an active conda environment, you can run
+This repository contains the code for "Conformity, Inertia, and Value Alignment in Multi-Turn LLM Deliberation".
 
-```bash
-$ conda env update --file environment.yml
-$ pip install -e .
-```
 
-If you are installing with `pip` you can run
-
-```bash
-$ pip install -e . -r requirements.txt
-```
