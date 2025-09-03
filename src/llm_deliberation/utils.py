@@ -149,5 +149,10 @@ def bootstrap_statistic_df(df, statistic_func, n_bootstrap=1000, confidence_leve
         'lower_err': bootstrap_mean - ci_lower
     }
 
-def change_of_minds(verdicts):
+def change_of_minds(verdicts, mean=False):
+    if mean:
+        return verdicts.apply(lambda x: (len(x) > 1) & (len(set(x)) > 1)).mean()
     return verdicts.apply(lambda x: (len(x) > 1) & (len(set(x)) > 1)).sum()
+
+def first_round_verdicts(verdicts):
+    return verdicts.apply(lambda x: x[0])

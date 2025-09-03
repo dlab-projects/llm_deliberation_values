@@ -160,7 +160,6 @@ def process_deliberation_results(results_list, n_agents, max_rounds, individual_
         row_data = {
             'n_rounds': n_rounds,
             'final_verdict': final_verdict,
-            'verdict_chain': verdicts.copy()
         }
 
         # Add agent-specific verdict chains
